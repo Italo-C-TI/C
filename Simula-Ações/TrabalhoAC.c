@@ -26,15 +26,12 @@
 
    int main(){
 	   			Lista *primeiro= NULL;
-                int quant, cont , i;
-				int opcao, opcao1,opcao2,opcao3;
-
-
+				int opcao, opcao1;
 
 	while(opcao!=0)
 	{
 			
-	          	printf("------------------------------------\n");
+	            printf("------------------------------------\n");
 	          	printf("         SEJA BEM VINDO\n");
 	          	printf("------------------------------------\n");
 			  	printf(" 0-SAIR\n");
