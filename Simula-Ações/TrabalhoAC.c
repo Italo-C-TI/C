@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
-#include<stdbool.h>
+#include <stdbool.h>
 
 	
 	typedef struct lista{
@@ -18,7 +18,7 @@
    Lista* inserir_papel(Lista* primeiro);
    void listar_papeis(Lista* primeiro);
    Lista* excluir_papel(Lista* primeiro);
-   void alterar_papel(Lista* primeiro);
+   Lista* alterar_papel(Lista* primeiro);
    Lista* verifica_compra (Lista *primeiro);
    Lista* verifica_venda (Lista *primeiro);
 
@@ -96,7 +96,7 @@
 				printf("------------------------------------\n");
 				printf("             ALTERAR CADASTRO\n");
 				printf("------------------------------------\n");
-				alterar_papel(primeiro);
+				primeiro=alterar_papel(primeiro);
 				printf("------------------------------------\n");
 				getch();
 			break;	
@@ -156,11 +156,11 @@ Lista* inserir_papel (Lista *primeiro){
 		 NovoPapel->valorVenda= papel.valorVenda;
 		 NovoPapel->codigo= papel.codigo;
          NovoPapel->prox= primeiro;
-         printf("\n  Cadastro realizado com sucesso.");
+         printf(" Cadastro realizado com sucesso.\n");
          return NovoPapel;    
      }else
 	 {
-         printf("\n  Cadastro invalido.");
+         printf(" Cadastro invalido.\n");
          return primeiro;
      }
 }
@@ -231,14 +231,14 @@ Lista* verifica_venda (Lista *primeiro){
      }
 }
 
-void alterar_papel(Lista* primeiro){     
+Lista* alterar_papel(Lista* primeiro){     
      char nome_substituto[40], sigla_substituto[20];
      float novoValorCompra=0,novoValorVenda=0;
 	 int codigo=0;  
      Lista* atual=primeiro;
      
      //Requisitando e lendo o código do Papel a ser alterado.
-     printf("  Codigo do Papel a ser alterado: ");
+     printf("  Codigo do Papel a ser alterado: \n");
      fflush(stdin);
      scanf("%i",&codigo);
      
@@ -249,23 +249,23 @@ void alterar_papel(Lista* primeiro){
      
      //Alterando os dados 
      if(atual!=NULL){
-        printf("\n  Novo nome: ");
+        printf(" Novo nome: \n");
         fflush (stdin); fgets(nome_substituto, 40, stdin); 
         strcpy(atual->nome,nome_substituto);
-        printf("\n  Nova sigla: ");
+        printf("  Nova sigla: \n");
         fflush (stdin); fgets(sigla_substituto, 40, stdin); printf ("\n");
         strcpy(atual->sigla,sigla_substituto);
-		fflush (stdin); printf("\n Novo valor de compra");
-		scanf("%f",novoValorCompra);
-		fflush(stdin);novoValorCompra = atual->valorCompra;
-		fflush (stdin); printf("\n Novo valor de venda");
-		scanf("%f",novoValorVenda);
-		fflush(stdin);novoValorVenda = atual->valorVenda;	
+		fflush (stdin); printf(" Novo valor de compra: \n");
+		scanf("%f", &novoValorCompra);
+		fflush(stdin); atual->valorCompra=novoValorCompra;
+		fflush (stdin); printf(" Novo valor de venda: \n");
+		scanf("%f", &novoValorVenda);
+		fflush(stdin); atual->valorVenda=novoValorVenda ;	
         printf("  Dados alterados com sucesso.\n");
      }else{
-        printf("\n  Papel nao encontrado.");
+        printf(" Papel nao encontrado.\n");
      }
-     printf("\n\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
+     printf( "PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.\n");
 }
 
 Lista* excluir_papel(Lista *primeiro){
@@ -294,16 +294,16 @@ Lista* excluir_papel(Lista *primeiro){
      
      //Excluindo o primeiro da lista.   
      if(anterior==NULL){
-        printf("\n  Conteudo excluido com sucesso."); 
+        printf("  Conteudo excluido com sucesso.\n"); 
         primeiro= atual->prox;
      //Excluindo  do meio da lista.
      }else{
-        printf("\n  Conteudo excluido com sucesso.");
+        printf(" Conteudo excluido com sucesso.\n");
         anterior->prox= atual->prox;
      }
      
      //Desalocando o espaço da memória.
      free(atual);
-     printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
+     printf(" PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.\n");
      return primeiro;     
 }
